@@ -1,0 +1,25 @@
+# Get your own apiKey from newsapi.org and create your account and you'll get your own apiKey
+
+
+from win32com.client import Dispatch
+import requests
+import json
+
+
+def speak(string):
+    speak = Dispatch("SAPI.SpVoice")
+    speak.Speak(string)
+
+if __name__ == '__main__':
+    speak("News for Today..Lets begin with the today News")
+    url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=84********************e21b"
+    
+    news = requests.get(url).text
+    news_dict = json.loads(news)
+    arts = news_dict['articles']
+    
+    for article in arts:
+        speak(article['title'])
+        speak("Moving on to the next news...")
+        
+    speak("Thanks for Listening")
