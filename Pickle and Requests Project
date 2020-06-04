@@ -1,0 +1,13 @@
+import requests
+import pickle
+
+
+r = requests.get("https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data")
+text = r.text.split("\n")
+
+with open("iris.pkl", 'wb') as f1:
+    pickle.dump(text, f1)
+
+with open("iris.pkl", 'rb') as f2:
+    lst = pickle.load(f2)
+    print(lst)
